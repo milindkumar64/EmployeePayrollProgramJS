@@ -13,7 +13,6 @@ const TOTAL_WORKING_HOURS = 160;
 function calculateDailyWage(empHrs) {
     return empHrs * WAGE_PER_HOUR;
 }
-
 function getWorkingHours(empCheck) {
     switch (empCheck) {
         case IS_PART_TIME:
@@ -27,8 +26,7 @@ function getWorkingHours(empCheck) {
 }
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
-let empDailyWageArray = new Array();
-
+let empDailyWageArray = new Array(); 
 while (totalEmpHrs <= TOTAL_WORKING_HOURS && totalWorkingDays < NUMBER_OF_WORKING_DAYS) {
     totalWorkingDays++;
     let empCheck = Math.floor(Math.random() * 10) % 3;
@@ -47,12 +45,13 @@ function sum(dailyWage) {
     totalEmpWage += dailyWage;
 }
 empDailyWageArray.forEach(sum);
+//empDailyWageArray.forEach(sum);
 console.log("UC-7A - Total Days: " + totalWorkingDays + " Total Hours: " + totalEmpHrs + " Employee Daily Wage: " + employeeWage);
 
 function totalWages(totalWage,dailyWage){
-    return totalWage + dailyWage;
+    return totalWage + dailyWage;   
 }
-console.log("UC-7A - Employee Wage with Reduce method: " + empDailyWageArray.reduce(totalWages, 0));
+console.log("UC-7A - Employee Wage with Reduce method: " + empDailyWageArray.reduce(totalWages,24));
 
 //UC-7B
 let dayAlong = 0;
@@ -102,11 +101,15 @@ console.log(isAnyPartTimeWageArray);
 
 //UC-7G
 function totalDaysWorked(numOfDays, dailyWage){
-    if(dailyWage > 0){
+    if(dailyWage.includes("80") || dailyWage.includes("160") ){
+       // console.log("MK");
         return numOfDays+1;
     }
     return numOfDays;
 }
-let totalDaysWorkedArray = mapDayWithWageArray.reduce(totalDaysWorked);
+let totalDaysWorkedArray = mapDayWithWageArray.reduce(totalDaysWorked,0);
 console.log("UC-7G - Number of days employee worked: ");
-console.log(totalDaysWorkedArray,0);
+console.log(totalDaysWorkedArray)
+
+//UC8
+console.log("Store the Day and the Daily Wage along with the Total Wage");
