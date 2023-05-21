@@ -11,6 +11,7 @@ const NUMBER_OF_WORKING_DAYS = 20;
 const TOTAL_WORKING_HOURS = 160;
 
 let empDailyWageMap = new Map();
+let empDailyHrMap = new Map();
 
 function calculateDailyWage(empHrs) {
     return empHrs * WAGE_PER_HOUR;
@@ -123,3 +124,24 @@ function totalWagesMap(dailyWage) {
 }
 Array.from(empDailyWageMap.values()).map(totalWagesMap); 
 console.log(" Total Wage using Map: " + totalWageUsingMap);
+
+//UC9
+const findTotal = (totalVal, dailyVal) => {
+    return totalVal + dailyVal;
+}
+let count = 0;
+let totalHrs = Array.from(empDailyHrMap.values()).reduce(findTotal, 0);
+let totalSalary = empDailyWageArray.filter(dailyWage => dailyWage > 0).reduce(findTotal, 0);
+console.log("UC9A- Emp wage with arrow function: " + " Total Wage: " + totalSalary + " Total Hours: " + totalHrs);
+
+let fullWorkingDays = new Array();
+let partWorkingDays = new Array();
+let noWorkingDays = new Array();
+empDailyHrMap.forEach((value, key, map) => {
+    if (value == 8) fullWorkingDays.push(key);
+    else if (value == 4) partWorkingDays.push(key);
+    else noWorkingDays.push(key);
+});
+console.log("Full Working days: " + fullWorkingDays);
+console.log("Part Working Days: " + partWorkingDays);
+console.log("No Working days: " + noWorkingDays);
